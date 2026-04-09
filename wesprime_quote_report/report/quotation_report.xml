@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report wrapper -->
+    <template id="report_wesprime_quotation">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="wesprime_quote_report.report_wesprime_quotation_document" t-lang="'en_US'"/>
+            </t>
+        </t>
+    </template>
+
+    <!-- Report document -->
+    <template id="report_wesprime_quotation_document">
+        <t t-call="web.basic_layout">
+            <t t-set="company" t-value="doc.company_id or res_company"/>
+            <t t-set="order_lines" t-value="doc.order_line.filtered(lambda l: not l.display_type)"/>
+
+            <div class="page wesprime-page" style="margin: 0; padding: 0; position: relative; font-family: 'DejaVu Sans', sans-serif; color: #14213d;">
+                <style type="text/css">
+                    .wesprime-page {
+                        font-size: 12px;
+                        line-height: 1.45;
+                    }
+                    .wesprime-page table {
+                        width: 100%;
+                        border-collapse: collapse;
+                    }
+                    .wesprime-title {
+                        font-size: 28px;
+                        font-weight: 700;
+                        letter-spacing: 1px;
+                        color: #102542;
+                        text-transform: uppercase;
+                    }
+                    .wesprime-subtitle {
+                        margin-top: 4px;
+                        font-size: 13px;
+                        color: #52606d;
+                    }
+                    .wesprime-section {
+                        margin-top: 14px;
+                    }
+                    .wesprime-box {
+                        border: 1px solid #d9e2ec;
+                        background: #f8fafc;
+                    }
+                    .wesprime-label {
+                        width: 34%;
+                        padding: 6px 8px;
+                        border: 1px solid #d9e2ec;
+                        background: #eef2f7;
+                        color: #102542;
+                        font-weight: 700;
+                        vertical-align: top;
+                    }
+                    .wesprime-value {
+                        padding: 6px 8px;
+                        border: 1px solid #d9e2ec;
+                        vertical-align: top;
+                    }
+                    .wesprime-section-title {
+                        padding: 8px 10px;
+                        background: #102542;
+                        color: #ffffff;
+                        font-size: 13px;
+                        font-weight: 700;
+                        letter-spacing: 0.4px;
+                        text-transform: uppercase;
+                    }
+                    .wesprime-service-head th {
+                        padding: 9px 8px;
+                        border: 1px solid #d9e2ec;
+                        background: #102542;
+                        color: #ffffff;
+                        font-size: 12px;
+                        font-weight: 700;
+                        text-align: left;
+                    }
+                    .wesprime-service-row td {
+                        padding: 10px 8px;
+                        border: 1px solid #d9e2ec;
+                        vertical-align: top;
+                    }
+                    .wesprime-service-name {
+                        font-size: 12px;
+                        font-weight: 700;
+                        color: #102542;
+                    }
+                    .wesprime-service-desc {
+                        margin-top: 3px;
+                        font-size: 11px;
+                        color: #5b6770;
+                    }
+                    .wesprime-note {
+                        padding: 12px 14px;
+                        border: 1px solid #d9e2ec;
+                        border-left: 4px solid #102542;
+                        background: #f8fafc;
+                        color: #344050;
+                    }
+                    .wesprime-totals-label {
+                        width: 58%;
+                        padding: 7px 8px;
+                        border: 1px solid #d9e2ec;
+                        background: #f8fafc;
+                        font-weight: 700;
+                    }
+                    .wesprime-totals-value {
+                        padding: 7px 8px;
+                        border: 1px solid #d9e2ec;
+                        text-align: right;
+                    }
+                    .wesprime-sign-cell {
+                        width: 25%;
+                        padding: 10px;
+                        border: 1px solid #d9e2ec;
+                        vertical-align: top;
+                    }
+                    .wesprime-sign-head {
+                        margin-bottom: 10px;
+                        font-size: 12px;
+                        font-weight: 700;
+                        color: #102542;
+                        text-transform: uppercase;
+                    }
+                    .wesprime-sign-image {
+                        width: auto;
+                        max-width: 120px;
+                        height: auto;
+                        max-height: 44px;
+                        display: block;
+                        margin: 0 auto 10px auto;
+                    }
+                    .wesprime-sign-line {
+                        margin-top: 22px;
+                        border-top: 1px solid #52606d;
+                        padding-top: 5px;
+                        text-align: center;
+                        font-size: 11px;
+                        color: #52606d;
+                    }
+                    .wesprime-footer {
+                        margin-top: 14px;
+                        background: #0b1f38;
+                        color: #ffffff;
+                    }
+                    .wesprime-footer td {
+                        padding: 12px 14px;
+                    }
+                    .wesprime-footer-name {
+                        font-size: 15px;
+                        font-weight: 700;
+                        letter-spacing: 0.5px;
+                        text-transform: uppercase;
+                    }
+                    .wesprime-footer-tagline,
+                    .wesprime-footer-contact,
+                    .wesprime-footer-meta {
+                        margin-top: 4px;
+                        font-size: 10.5px;
+                        line-height: 1.5;
+                        color: #d9e2ec;
+                    }
+                    .wesprime-muted {
+                        color: #6b7785;
+                    }
+                    .wesprime-right {
+                        text-align: right;
+                    }
+                    .wesprime-center {
+                        text-align: center;
+                    }
+                    .wesprime-small {
+                        font-size: 10px;
+                    }
+                    .wesprime-qr-box {
+                        margin-top: 12px;
+                        padding: 8px;
+                        border: 1px dashed #9fb3c8;
+                        background: #f8fafc;
+                        text-align: center;
+                        color: #6b7785;
+                        font-size: 10px;
+                    }
+                </style>
+
+                <!-- V2 foundation: keep the page container relative for future watermark support -->
+                <!-- Add an absolute-positioned watermark block here when that feature is enabled -->
+
+                <!-- Top banner -->
+                <div>
+                    <img src="/wesprime_quote_report/static/src/img/quotation_header.png" alt="Quotation Header" style="width: 100%; height: auto; display: block;"/>
+                </div>
+
+                <!-- Title block -->
+                <div class="wesprime-section" style="margin-top: 16px;">
+                    <table>
+                        <tr>
+                            <td style="width: 60%; vertical-align: top; padding-right: 14px;">
+                                <div class="wesprime-title">Quotation</div>
+                                <div class="wesprime-subtitle">Premium ERP Implementation &amp; Software Development Proposal</div>
+                            </td>
+                            <td style="width: 40%; vertical-align: top;">
+                                <table class="wesprime-box">
+                                    <tr>
+                                        <td class="wesprime-label">Quotation Number</td>
+                                        <td class="wesprime-value"><span t-esc="doc.name or '-'"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wesprime-label">Issue Date</td>
+                                        <td class="wesprime-value">
+                                            <span t-field="doc.date_order" t-options='{"widget": "date"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wesprime-label">Prepared By</td>
+                                        <td class="wesprime-value"><span t-esc="doc.user_id.name or company.name or '-'"/></td>
+                                    </tr>
+                                    <tr t-if="doc.validity_date">
+                                        <td class="wesprime-label">Valid Until</td>
+                                        <td class="wesprime-value">
+                                            <span t-field="doc.validity_date" t-options='{"widget": "date"}'/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Client details -->
+                <div class="wesprime-section">
+                    <div class="wesprime-section-title">Client Details</div>
+                    <table class="wesprime-box">
+                        <tr>
+                            <td class="wesprime-label">Client Name</td>
+                            <td class="wesprime-value"><span t-esc="doc.partner_id.name or '-'"/></td>
+                            <td class="wesprime-label">Contact Person</td>
+                            <td class="wesprime-value"><span t-esc="doc.partner_id.parent_id.name or doc.partner_id.name or '-'"/></td>
+                        </tr>
+                        <tr>
+                            <td class="wesprime-label">Address</td>
+                            <td class="wesprime-value">
+                                <div t-if="doc.partner_id.street"><span t-esc="doc.partner_id.street"/></div>
+                                <div t-if="doc.partner_id.street2"><span t-esc="doc.partner_id.street2"/></div>
+                                <div>
+                                    <span t-esc="doc.partner_id.city or ''"/>
+                                    <t t-if="doc.partner_id.city and doc.partner_id.zip">, </t>
+                                    <span t-esc="doc.partner_id.zip or ''"/>
+                                </div>
+                                <div><span t-esc="doc.partner_id.country_id.name or ''"/></div>
+                            </td>
+                            <td class="wesprime-label">Contact Details</td>
+                            <td class="wesprime-value">
+                                <div>Phone: <span t-esc="doc.partner_id.phone or doc.partner_id.mobile or '-'"/></div>
+                                <div>Email: <span t-esc="doc.partner_id.email or '-'"/></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Intro box -->
+                <div class="wesprime-section">
+                    <div class="wesprime-note">
+                        Thank you for the opportunity to submit our quotation. This proposal outlines the commercial scope for ERP implementation, business automation, and software development services tailored to your operational requirements.
+                    </div>
+                </div>
+
+                <!-- Services table -->
+                <div class="wesprime-section">
+                    <div class="wesprime-section-title">Service Summary</div>
+                    <table>
+                        <thead class="wesprime-service-head">
+                            <tr>
+                                <th style="width: 9%;">SI.NO</th>
+                                <th style="width: 55%;">Service</th>
+                                <th style="width: 18%;" class="wesprime-right">Unit Price</th>
+                                <th style="width: 18%;" class="wesprime-right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-if="not order_lines" class="wesprime-service-row">
+                                <td colspan="4" class="wesprime-center wesprime-muted">No service lines available on this quotation.</td>
+                            </tr>
+                            <tr t-foreach="order_lines" t-as="line" class="wesprime-service-row">
+                                <td class="wesprime-center">
+                                    <span t-esc="line_index + 1"/>
+                                </td>
+                                <td>
+                                    <div class="wesprime-service-name">
+                                        <span t-esc="line.product_id.display_name or line.name or '-'"/>
+                                    </div>
+                                    <div class="wesprime-service-desc">
+                                        <span t-esc="line.name or '-'"/>
+                                    </div>
+                                </td>
+                                <td class="wesprime-right">
+                                    <span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                </td>
+                                <td class="wesprime-right">
+                                    <span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Totals section -->
+                <div class="wesprime-section" style="page-break-inside: avoid;">
+                    <table>
+                        <tr>
+                            <td style="width: 58%; vertical-align: top; padding-right: 12px;">
+                                <div class="wesprime-section-title">Amount in Words</div>
+                                <table class="wesprime-box">
+                                    <tr>
+                                        <td class="wesprime-value" style="padding: 12px;">
+                                            <span t-esc="doc.currency_id.amount_to_text(doc.amount_total)"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width: 42%; vertical-align: top;">
+                                <div class="wesprime-section-title">Totals</div>
+                                <table class="wesprime-box">
+                                    <tr>
+                                        <td class="wesprime-totals-label">Net Total</td>
+                                        <td class="wesprime-totals-value">
+                                            <span t-field="doc.amount_untaxed" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="doc.amount_tax">
+                                        <td class="wesprime-totals-label">Taxes</td>
+                                        <td class="wesprime-totals-value">
+                                            <span t-field="doc.amount_tax" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wesprime-totals-label" style="background: #e7edf5;">Grand Total</td>
+                                        <td class="wesprime-totals-value" style="background: #e7edf5; font-weight: 700;">
+                                            <span t-field="doc.amount_total" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Terms and conditions -->
+                <div class="wesprime-section" style="page-break-inside: avoid;">
+                    <div class="wesprime-section-title">Terms &amp; Conditions</div>
+                    <table class="wesprime-box">
+                        <tr>
+                            <td class="wesprime-value" style="padding: 10px 12px;">
+                                <div>1. This quotation is valid only for the period mentioned above unless extended in writing.</div>
+                                <div style="margin-top: 6px;">2. Project scope, delivery timelines, and commercial assumptions are based on the current understanding of requirements.</div>
+                                <div style="margin-top: 6px;">3. Any change requests, additional modules, third-party licenses, integrations, or custom development beyond scope may be quoted separately.</div>
+                                <div style="margin-top: 6px;">4. Taxes, if applicable, are charged as per prevailing regulations unless explicitly stated otherwise.</div>
+                                <div style="margin-top: 6px;">5. Work execution, milestone planning, and user acceptance will be aligned with the final agreed implementation plan.</div>
+                                <div style="margin-top: 6px;">6. Payment reference should mention the quotation number for traceability.</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Final approval and banking section -->
+                <div class="wesprime-section" style="page-break-inside: avoid;">
+                    <div class="wesprime-section-title">Commercial Acceptance</div>
+                    <table class="wesprime-box">
+                        <tr>
+                            <td class="wesprime-sign-cell">
+                                <div class="wesprime-sign-head">Bank Details</div>
+                                <div><strong>Bank:</strong> South Indian Bank</div>
+                                <div style="margin-top: 4px;"><strong>Account Name:</strong> <span t-esc="company.name or '-'"/></div>
+                                <div style="margin-top: 4px;"><strong>Account Number:</strong> 0530053000013863</div>
+                                <div style="margin-top: 4px;"><strong>Reference:</strong> <span t-esc="doc.name or '-'"/></div>
+                                <div class="wesprime-qr-box">
+                                    QR / Digital Approval Placeholder
+                                </div>
+                            </td>
+                            <td class="wesprime-sign-cell">
+                                <div class="wesprime-sign-head">Prepared By</div>
+                                <img src="/wesprime_quote_report/static/src/img/signature_prepared.png" alt="Prepared Signature" class="wesprime-sign-image"/>
+                                <div class="wesprime-center"><strong><span t-esc="doc.user_id.name or company.name or '-'"/></strong></div>
+                                <div class="wesprime-center wesprime-small wesprime-muted">Prepared for commercial review</div>
+                                <div class="wesprime-sign-line">Authorized Preparer</div>
+                            </td>
+                            <td class="wesprime-sign-cell">
+                                <div class="wesprime-sign-head">Approved By</div>
+                                <img src="/wesprime_quote_report/static/src/img/signature_approved.png" alt="Approved Signature" class="wesprime-sign-image"/>
+                                <div class="wesprime-center"><strong><span t-esc="company.name or '-'"/></strong></div>
+                                <div class="wesprime-center wesprime-small wesprime-muted">Authorized signatory</div>
+                                <div class="wesprime-sign-line">Approved Signature</div>
+                            </td>
+                            <td class="wesprime-sign-cell">
+                                <div class="wesprime-sign-head">Client Approval</div>
+                                <div class="wesprime-center wesprime-small wesprime-muted" style="margin-top: 34px;">
+                                    Sign and stamp to confirm acceptance
+                                </div>
+                                <div class="wesprime-sign-line">Client Signature &amp; Stamp</div>
+                                <div class="wesprime-center wesprime-small wesprime-muted" style="margin-top: 8px;">
+                                    Date: ____________________
+                                </div>
+                                <!-- V2 foundation: future digital approval metadata can be injected in this cell -->
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Premium footer -->
+                <div class="wesprime-footer">
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="wesprime-footer-name"><span t-esc="company.name or 'Wesprime'"/></div>
+                                <div class="wesprime-footer-tagline">ERP Implementation | Odoo Solutions | Business Automation | Software Development</div>
+                                <div class="wesprime-footer-contact">
+                                    Phone: <span t-esc="company.phone or '-'"/> |
+                                    Email: <span t-esc="company.email or '-'"/> |
+                                    Website: <span t-esc="company.website or '-'"/>
+                                </div>
+                                <div class="wesprime-footer-meta">
+                                    City: <span t-esc="company.city or '-'"/> |
+                                    Country: <span t-esc="company.country_id.name or '-'"/> |
+                                    CIN: <span t-esc="company.company_registry or '-'"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- V2 placeholder: page numbering can later be introduced with dedicated wkhtmltopdf header/footer HTML -->
+            </div>
+        </t>
+    </template>
+</odoo>
