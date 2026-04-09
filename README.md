@@ -1,103 +1,95 @@
-# Wesprime Quote Report
+# Wesprime Odoo Report Templates
 
-This repository contains a single Odoo add-on: `wesprime_quote_report`.
+This repository contains two Odoo 17 add-ons for branded PDF document generation:
 
-The module adds a branded PDF quotation report for Sales Orders in Odoo 17. It is designed for service-led quotations and replaces the plain default output with a presentation-style PDF that includes a custom header, client details, service summary, totals, terms, banking details, and signature blocks.
+- `wesprime_quote_report`
+- `wesprime_invoice_report`
 
-## Project Snapshot
+Both modules are built as lightweight QWeb reporting add-ons. They do not add custom Python business logic. Their main purpose is to replace standard Odoo printouts with presentation-style PDFs that match Wesprime branding.
 
-- Module name: `wesprime_quote_report`
-- Odoo version: `17.0`
-- Dependency: `sale`
-- Report type: `QWeb PDF`
-- Target model: `sale.order`
-- License: `LGPL-3`
+## Repository Snapshot
 
-## What The Module Does
+| Module | Purpose | Target Model | Dependency | Print Action |
+| --- | --- | --- | --- | --- |
+| `wesprime_quote_report` | Branded quotation PDF | `sale.order` | `sale` | `Wesprime Quotation` |
+| `wesprime_invoice_report` | Branded tax invoice PDF | `account.move` | `account` | `Wesprime Invoice` |
 
-After installation, the module adds a new print action called `Wesprime Quotation` on Sales Orders. When triggered, Odoo generates a PDF using a custom QWeb template and a dedicated paper format.
+## What Is Included
 
-The report currently includes:
+### `wesprime_quote_report`
+
+This module adds a custom quotation report for Sales Orders.
+
+It includes:
 
 - A full-width branded header image
-- A quotation summary block with number, issue date, preparer, and validity date
-- Client details pulled from the customer record
-- A fixed introductory message
-- A service summary table built from quotation lines
+- A quotation title and summary section
+- Client details pulled from the partner record
+- A service summary table from quotation lines
 - Amount in words
-- Net total, tax, and grand total
+- Totals section
 - Fixed terms and conditions
-- Banking and signature sections
+- Banking details and signature blocks
 - A branded footer using company information
 
-## How It Is Wired
+### `wesprime_invoice_report`
 
-The module is intentionally simple and has no Python business logic beyond the standard add-on scaffold.
+This module adds a custom tax invoice report for Customer Invoices.
 
-| File | Purpose |
+It includes:
+
+- A full-width branded header image
+- A `Tax Invoice` title and invoice summary section
+- Billing details pulled from the invoice partner
+- An item table with `Description`, `Quantity`, `Unit Price`, and `Subtotal`
+- Amount in words using `currency_id.amount_to_text(amount_total)`
+- Totals section
+- Banking details and signature blocks
+- A branded footer using company information
+
+## Invoice Module Field Mapping
+
+The invoice module was created by adapting the quotation report structure to `account.move`.
+
+| Quote Logic | Invoice Logic |
 | --- | --- |
-| `wesprime_quote_report/__manifest__.py` | Declares the module, dependency on `sale`, and loads XML data files |
-| `wesprime_quote_report/__init__.py` | Empty module initializer |
-| `wesprime_quote_report/data/paperformat.xml` | Defines the dedicated A4 paper format and tight report margins |
-| `wesprime_quote_report/report/report_action.xml` | Registers the PDF report action on `sale.order` |
-| `wesprime_quote_report/report/quotation_report.xml` | Contains the full QWeb report layout, styling, and data bindings |
-| `wesprime_quote_report/static/src/img/quotation_header.png` | Header banner used at the top of the PDF |
-| `wesprime_quote_report/static/src/img/signature_prepared.png` | Static image used in the Prepared By block |
-| `wesprime_quote_report/static/src/img/signature_approved.png` | Static image used in the Approved By block |
+| `sale.order` | `account.move` |
+| `order_line` | `invoice_line_ids` |
+| `date_order` | `invoice_date` |
+| `validity_date` | `invoice_date_due` |
+| `user_id` | `invoice_user_id` |
 
-## Data Used In The PDF
+The invoice report also filters out `display_type` lines so sections and notes are skipped in the main pricing table.
 
-The report pulls values from the sales order, customer, company, currency, and order lines.
+## Repository Structure
 
-| Section | Source |
+| Path | Purpose |
 | --- | --- |
-| Quotation number | `sale.order.name` |
-| Issue date | `sale.order.date_order` |
-| Valid until | `sale.order.validity_date` |
-| Prepared by | `sale.order.user_id.name` |
-| Client name | `sale.order.partner_id.name` |
-| Contact person | `partner_id.parent_id.name` fallback to `partner_id.name` |
-| Client address | `partner_id.street`, `street2`, `city`, `zip`, `country_id.name` |
-| Contact details | `partner_id.phone`, `mobile`, `email` |
-| Services | `order_line` records excluding `display_type` lines |
-| Service title | `line.product_id.display_name` fallback to `line.name` |
-| Service description | `line.name` |
-| Pricing | `line.price_unit`, `line.price_subtotal` |
-| Totals | `amount_untaxed`, `amount_tax`, `amount_total` |
-| Amount in words | `currency_id.amount_to_text(amount_total)` |
-| Footer company info | `company.name`, `phone`, `email`, `website`, `city`, `country_id.name`, `company_registry` |
+| `wesprime_quote_report/__manifest__.py` | Quote module metadata |
+| `wesprime_quote_report/data/paperformat.xml` | Quote paper format |
+| `wesprime_quote_report/report/quotation_report.xml` | Quote QWeb template |
+| `wesprime_quote_report/report/report_action.xml` | Quote print action |
+| `wesprime_quote_report/static/src/img/` | Quote header and signature images |
+| `wesprime_invoice_report/__manifest__.py` | Invoice module metadata |
+| `wesprime_invoice_report/data/paperformat.xml` | Invoice paper format |
+| `wesprime_invoice_report/report/invoice_report.xml` | Invoice QWeb template |
+| `wesprime_invoice_report/report/report_action.xml` | Invoice print action |
+| `wesprime_invoice_report/static/src/img/` | Invoice header and signature images |
 
-## Installation
+## Shared Implementation Notes
 
-1. Place `wesprime_quote_report` inside your Odoo `addons_path`.
-2. Restart the Odoo server.
-3. Update the Apps list.
-4. Install `Wesprime Quote Report`.
+Both modules follow the same overall pattern:
 
-## Usage
+- Odoo 17 QWeb PDF reports
+- Dedicated A4 paper format
+- Hardcoded report language: `en_US`
+- Static header and signature image assets
+- Company-based footer details
+- No Python models, wizards, or computed helpers
 
-1. Open a Sales Order or Quotation.
-2. Use the `Print` menu.
-3. Select `Wesprime Quotation`.
-4. Odoo will generate the branded PDF.
+Both modules use the same paper format settings:
 
-## Current Behavior You Should Know
-
-These details are hardcoded in the current implementation and are important if you plan to extend or reuse the module:
-
-- The report language is fixed to `en_US`.
-- The subtitle below the main title is fixed text.
-- The introductory note is fixed text.
-- The terms and conditions block is fixed text.
-- The bank name and account number are hardcoded in the QWeb template.
-- The QR section is only a placeholder and does not generate a real QR code.
-- The prepared and approved signatures are static PNG files, not dynamic employee signatures.
-- Comments in the template mention future watermark, digital approval metadata, and page numbering, but those features are not implemented yet.
-
-## Paper Format
-
-The module ships with a dedicated A4 paper format tuned for this report:
-
+- Format: `A4`
 - Orientation: `Portrait`
 - Top margin: `8`
 - Bottom margin: `10`
@@ -106,34 +98,74 @@ The module ships with a dedicated A4 paper format tuned for this report:
 - DPI: `96`
 - Shrinking disabled: `True`
 
-This is meant to keep the header aligned and preserve layout consistency in the generated PDF.
+## Installation
+
+1. Place both module folders inside your Odoo `addons_path`.
+2. Restart the Odoo server.
+3. Update the Apps list.
+4. Install either or both modules:
+   - `Wesprime Quote Report`
+   - `Wesprime Invoice Report`
+
+## Usage
+
+### Quotation Report
+
+1. Open a Sales Order or Quotation.
+2. Use the `Print` menu.
+3. Select `Wesprime Quotation`.
+
+### Invoice Report
+
+1. Open a Customer Invoice.
+2. Use the `Print` menu.
+3. Select `Wesprime Invoice`.
+
+## Current Hardcoded Behavior
+
+These details are currently hardcoded in one or both templates:
+
+- Report language is fixed to `en_US`
+- Subtitle text under the main heading
+- Introductory note text
+- Terms and conditions in the quotation report
+- Banking details including bank name and account number
+- QR area is only a placeholder
+- Prepared and approved signatures are static PNG files
+- Footer tagline text
+
+This means the modules are easy to deploy, but some commercial details should be moved into configurable Odoo fields if the reports need to vary by company, user, or document type.
+
+## Design Notes
+
+- `wesprime_quote_report` keeps the original presentation-heavy custom styling approach.
+- `wesprime_invoice_report` follows the same visual direction but is organized using a cleaner Bootstrap-friendly layout for Odoo 17.
+- The invoice module reuses the same branding assets so both printouts look consistent.
 
 ## Customization Guide
 
-If you need to change the output later, these are the main places to edit:
+If you want to extend the reports later, these are the main files to change:
 
-- Update branding or layout in `wesprime_quote_report/report/quotation_report.xml`
-- Replace header or signature images in `wesprime_quote_report/static/src/img/`
-- Change page size or margins in `wesprime_quote_report/data/paperformat.xml`
-- Rename the print action or output filename in `wesprime_quote_report/report/report_action.xml`
-- Add more dynamic fields by extending the QWeb template bindings
+- Edit quote layout in `wesprime_quote_report/report/quotation_report.xml`
+- Edit invoice layout in `wesprime_invoice_report/report/invoice_report.xml`
+- Change margins or page setup in each module’s `data/paperformat.xml`
+- Rename print actions in each module’s `report/report_action.xml`
+- Replace header and signature images under each module’s `static/src/img/`
 
 ## Practical Notes For Future Work
 
-- There is no custom Python model, wizard, or computed helper in this add-on.
-- Most future work will happen in the XML template, not Python.
-- Because the template is monolithic, larger enhancements may be easier if you split sections into smaller reusable QWeb templates.
-- If bank details, signatures, or terms should vary by company, user, or quotation, they should be moved from hardcoded template values into real Odoo fields.
-- If multilingual output is required, the `t-lang` behavior should be made dynamic instead of fixed to `en_US`.
-
-## Recommended Next Improvements
-
-- Move bank details into company settings or a related model
+- Split the larger QWeb templates into smaller reusable template blocks if the reports continue to grow
+- Move banking details into company settings or a related configuration model
 - Replace static signatures with configurable company or employee signature fields
-- Add a real QR code if payment or approval workflows require it
-- Make terms and intro content configurable from Odoo
-- Split the single report template into smaller named sections for easier maintenance
+- Add real QR code generation if approval or payment workflows require it
+- Make static legal or commercial text configurable from Odoo
+- Add multilingual behavior instead of forcing `en_US`
 
 ## Summary
 
-This project is a clean, single-purpose Odoo reporting add-on. Its main value is the branded QWeb PDF for sales quotations. The implementation is straightforward, asset-driven, and easy to maintain, but several commercial details are currently hardcoded inside the report template and should be parameterized if the module is going to evolve further.
+This repository now contains a small, focused reporting bundle for Odoo 17:
+
+- `wesprime_quote_report` for branded quotations on `sale.order`
+- `wesprime_invoice_report` for branded invoices on `account.move`
+
+Both modules are straightforward XML-based add-ons, easy to maintain, and ready for further branding or functional enhancements.
