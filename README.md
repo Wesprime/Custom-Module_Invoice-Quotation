@@ -78,6 +78,13 @@ The invoice report also filters out `display_type` lines so sections and notes a
 
 ## Shared Implementation Notes
 
+Both modules use a modern sky blue branding palette:
+- Primary Sky Blue: #38BDF8
+- Light Background Blue: #E0F2FE
+- Professional Dark Blue Text: #0369A1
+
+Signatures are displayed as horizontal enterprise-style images with controlled sizing (max-width: 150px, max-height: 52px) for optimal PDF rendering.
+
 Both modules follow the same overall pattern:
 
 - Odoo 17 QWeb PDF reports
