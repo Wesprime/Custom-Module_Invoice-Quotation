@@ -261,7 +261,7 @@
                                 <div class="wesprime-soft-bg wesprime-soft-border h-100 p-3">
                                     <div class="fw-bold text-uppercase mb-2">Prepared By</div>
                                     <img src="/wesprime_invoice_report/static/src/img/signature_prepared.png" alt="Prepared Signature" class="wesprime-sign-image"/>
-                                    <div class="text-center fw-semibold"><span t-esc="doc.invoice_user_id.name or company.name or '-'"/></div>
+                                    <div class="text-center fw-semibold">Basil Jaison</div>
                                     <div class="text-center small wesprime-muted">Prepared for commercial review</div>
                                     <div class="wesprime-sign-line">Authorized Preparer</div>
                                 </div>
@@ -270,7 +270,7 @@
                                 <div class="wesprime-soft-bg wesprime-soft-border h-100 p-3">
                                     <div class="fw-bold text-uppercase mb-2">Approved By</div>
                                     <img src="/wesprime_invoice_report/static/src/img/signature_approved.png" alt="Approved Signature" class="wesprime-sign-image"/>
-                                    <div class="text-center fw-semibold"><span t-esc="company.name or '-'"/></div>
+                                    <div class="text-center fw-semibold">Naveen Jose</div>
                                     <div class="text-center small wesprime-muted">Authorized signatory</div>
                                     <div class="wesprime-sign-line">Approved Signature</div>
                                 </div>
