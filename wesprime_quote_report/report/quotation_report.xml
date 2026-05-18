@@ -382,14 +382,14 @@
                             <td class="wesprime-sign-cell">
                                 <div class="wesprime-sign-head">Prepared By</div>
                                 <img src="/wesprime_quote_report/static/src/img/signature_prepared.png" alt="Prepared Signature" class="wesprime-sign-image"/>
-                                <div class="wesprime-center"><strong><span t-esc="doc.user_id.name or company.name or '-'"/></strong></div>
+                                <div class="wesprime-center"><strong>Basil Jaison</strong></div>
                                 <div class="wesprime-center wesprime-small wesprime-muted">Prepared for commercial review</div>
                                 <div class="wesprime-sign-line">Authorized Preparer</div>
                             </td>
                             <td class="wesprime-sign-cell">
                                 <div class="wesprime-sign-head">Approved By</div>
                                 <img src="/wesprime_quote_report/static/src/img/signature_approved.png" alt="Approved Signature" class="wesprime-sign-image"/>
-                                <div class="wesprime-center"><strong><span t-esc="company.name or '-'"/></strong></div>
+                                <div class="wesprime-center"><strong>Naveen Jose</strong></div>
                                 <div class="wesprime-center wesprime-small wesprime-muted">Authorized signatory</div>
                                 <div class="wesprime-sign-line">Approved Signature</div>
                             </td>
