@@ -11,29 +11,29 @@
     <template id="report_wesprime_invoice_document">
         <t t-call="web.basic_layout">
             <t t-set="company" t-value="doc.company_id or res_company"/>
-            <t t-set="invoice_lines" t-value="doc.invoice_line_ids.filtered(lambda l: not l.display_type)"/>
+            <t t-set="invoice_lines" t-value="doc.invoice_line_ids.filtered(lambda line: line.display_type not in ('line_section', 'line_note'))"/>
 
             <div class="page wesprime-invoice-page">
                 <style type="text/css">
                     .wesprime-invoice-page {
-                        color: #0369A1;
+                        color: #1F2933;
                         font-family: 'DejaVu Sans', sans-serif;
                         font-size: 12px;
                         line-height: 1.45;
                     }
                     .wesprime-title {
-                        color: #38BDF8;
+                        color: #006D77;
                         font-size: 28px;
                         font-weight: 700;
                         letter-spacing: 1px;
                         text-transform: uppercase;
                     }
                     .wesprime-subtitle {
-                        color: #52606d;
+                        color: #5B6770;
                         font-size: 13px;
                     }
                     .wesprime-section-title {
-                        background: #38BDF8;
+                        background: #006D77;
                         color: #ffffff;
                         font-size: 12px;
                         font-weight: 700;
@@ -41,57 +41,77 @@
                         text-transform: uppercase;
                     }
                     .wesprime-soft-bg {
-                        background: #E0F2FE;
+                        background: #EAF7F8;
                     }
                     .wesprime-soft-border {
-                        border: 1px solid #d9e2ec;
+                        border: 1px solid #D9E2E3;
                     }
                     .wesprime-muted {
-                        color: #6b7785;
+                        color: #5B6770;
                     }
                     .wesprime-note {
-                        border-left: 4px solid #38BDF8;
+                        border-left: 4px solid #00A6B4;
                     }
                     .wesprime-table thead th {
-                        background: #38BDF8;
+                        background: #006D77;
                         color: #ffffff;
                         font-size: 12px;
                         font-weight: 700;
                         padding: 10px 8px;
-                        border-color: #d9e2ec;
+                        border-color: #D9E2E3;
                     }
                     .wesprime-table td {
-                        border-color: #d9e2ec;
+                        border-color: #D9E2E3;
                         padding: 10px 8px;
                         vertical-align: top;
+                    }
+                    .wesprime-sign-card {
+                        background: #ffffff;
+                        border: 1px solid #D9E2E3;
+                    }
+                    .wesprime-sign-head {
+                        border-bottom: 1px solid #D9E2E3;
+                        color: #006D77;
+                        font-size: 12px;
+                        font-weight: 700;
+                        letter-spacing: 0.3px;
+                        margin-bottom: 10px;
+                        padding-bottom: 6px;
+                        text-align: center;
+                        text-transform: uppercase;
+                    }
+                    .wesprime-signature-area {
+                        margin: 6px 0 8px;
+                        min-height: 62px;
+                        text-align: center;
                     }
                     .wesprime-sign-image {
                         width: auto;
                         max-width: 150px;
                         height: auto;
-                        max-height: 52px;
+                        max-height: 58px;
                         object-fit: contain;
                         display: block;
                         margin: 0 auto 10px;
                     }
                     .wesprime-sign-line {
-                        border-top: 1px solid #52606d;
-                        color: #52606d;
+                        border-top: 1px solid #6B7785;
+                        color: #5B6770;
                         font-size: 11px;
                         margin-top: 24px;
                         padding-top: 6px;
                         text-align: center;
                     }
                     .wesprime-footer {
-                        background: #38BDF8;
+                        background: #006D77;
                         color: #ffffff;
                     }
                     .wesprime-footer .wesprime-muted-light {
                         color: #ffffff;
                     }
                     .wesprime-qr-box {
-                        border: 1px dashed #9fb3c8;
-                        color: #6b7785;
+                        border: 1px dashed #9CB9BC;
+                        color: #5B6770;
                         font-size: 10px;
                     }
                 </style>
@@ -181,16 +201,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr t-if="not invoice_lines">
-                                <td colspan="4" class="text-center wesprime-muted">No invoice lines available on this invoice.</td>
+                            <tr t-if="not doc.invoice_line_ids">
+                                <td colspan="4" class="text-center wesprime-muted">No invoice lines available on this invoice</td>
                             </tr>
                             <tr t-foreach="invoice_lines" t-as="line">
                                 <td>
                                     <div class="fw-semibold text-dark">
-                                        <span t-esc="line.product_id.display_name or line.name or '-'"/>
+                                        <span t-esc="line.name or line.product_id.display_name or '-'"/>
                                     </div>
-                                    <div t-if="line.product_id.display_name and line.name and line.name != line.product_id.display_name" class="small wesprime-muted mt-1">
-                                        <span t-esc="line.name"/>
+                                    <div t-if="line.product_id.display_name and line.product_id.display_name not in (line.name or '')" class="small wesprime-muted mt-1">
+                                        <span t-esc="line.product_id.display_name"/>
                                     </div>
                                 </td>
                                 <td class="text-end">
@@ -231,8 +251,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-semibold" style="background: #e7edf5;">Grand Total</td>
-                                    <td class="text-end fw-bold" style="background: #E0F2FE;">
+                                    <td class="fw-semibold" style="background: #EAF7F8;">Grand Total</td>
+                                    <td class="text-end fw-bold" style="background: #EAF7F8;">
                                         <span t-field="doc.amount_total" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
                                     </td>
                                 </tr>
@@ -258,21 +278,25 @@
                                 </div>
                             </div>
                             <div class="col-4">
-                                <div class="wesprime-soft-bg wesprime-soft-border h-100 p-3">
-                                    <div class="fw-bold text-uppercase mb-2">Prepared By</div>
-                                    <img src="/wesprime_invoice_report/static/src/img/signature_prepared.png" alt="Prepared Signature" class="wesprime-sign-image"/>
+                                <div class="wesprime-sign-card h-100 p-3">
+                                    <div class="wesprime-sign-head">Prepared By</div>
+                                    <div class="wesprime-signature-area">
+                                        <img src="/wesprime_invoice_report/static/src/img/signature_prepared.png" alt="Prepared by signature" class="wesprime-sign-image"/>
+                                    </div>
                                     <div class="text-center fw-semibold">Basil Jaison</div>
                                     <div class="text-center small wesprime-muted">Prepared for commercial review</div>
                                     <div class="wesprime-sign-line">Authorized Preparer</div>
                                 </div>
                             </div>
                             <div class="col-4">
-                                <div class="wesprime-soft-bg wesprime-soft-border h-100 p-3">
-                                    <div class="fw-bold text-uppercase mb-2">Approved By</div>
-                                    <img src="/wesprime_invoice_report/static/src/img/signature_approved.png" alt="Approved Signature" class="wesprime-sign-image"/>
+                                <div class="wesprime-sign-card h-100 p-3">
+                                    <div class="wesprime-sign-head">Approved By</div>
+                                    <div class="wesprime-signature-area">
+                                        <img src="/wesprime_invoice_report/static/src/img/signature_approved.png" alt="Approved by signature" class="wesprime-sign-image"/>
+                                    </div>
                                     <div class="text-center fw-semibold">Naveen Jose</div>
                                     <div class="text-center small wesprime-muted">Authorized signatory</div>
-                                    <div class="wesprime-sign-line">Approved Signature</div>
+                                    <div class="wesprime-sign-line">Authorized Approval</div>
                                 </div>
                             </div>
                         </div>

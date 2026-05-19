@@ -15,7 +15,7 @@
             <t t-set="company" t-value="doc.company_id or res_company"/>
             <t t-set="order_lines" t-value="doc.order_line.filtered(lambda l: not l.display_type)"/>
 
-<div class="page wesprime-page" style="margin: 0; padding: 0; position: relative; font-family: 'DejaVu Sans', sans-serif; color: #0369A1;">
+<div class="page wesprime-page" style="margin: 0; padding: 0; position: relative; font-family: 'DejaVu Sans', sans-serif; color: #1F2933;">
                     <style type="text/css">
                         .wesprime-page {
                             font-size: 12px;
@@ -29,38 +29,39 @@
                             font-size: 28px;
                             font-weight: 700;
                             letter-spacing: 1px;
-                            color: #38BDF8;
+                            color: #006D77;
                             text-transform: uppercase;
                         }
                         .wesprime-subtitle {
                             margin-top: 4px;
                             font-size: 13px;
-                            color: #52606d;
+                            color: #5B6770;
                         }
                         .wesprime-section {
                             margin-top: 14px;
                         }
                         .wesprime-box {
-                            border: 1px solid #d9e2ec;
-                            background: #E0F2FE;
+                            border: 1px solid #D9E2E3;
+                            background: #EAF7F8;
                         }
                         .wesprime-label {
                             width: 34%;
                             padding: 6px 8px;
-                            border: 1px solid #d9e2ec;
-                            background: #E0F2FE;
-                            color: #38BDF8;
+                            border: 1px solid #D9E2E3;
+                            background: #EAF7F8;
+                            color: #006D77;
                             font-weight: 700;
                             vertical-align: top;
                         }
                         .wesprime-value {
                             padding: 6px 8px;
-                            border: 1px solid #d9e2ec;
+                            border: 1px solid #D9E2E3;
+                            background: #ffffff;
                             vertical-align: top;
                         }
                         .wesprime-section-title {
                             padding: 8px 10px;
-                            background: #38BDF8;
+                            background: #006D77;
                             color: #ffffff;
                             font-size: 13px;
                             font-weight: 700;
@@ -69,8 +70,8 @@
                         }
                         .wesprime-service-head th {
                             padding: 9px 8px;
-                            border: 1px solid #d9e2ec;
-                            background: #38BDF8;
+                            border: 1px solid #D9E2E3;
+                            background: #006D77;
                             color: #ffffff;
                             font-size: 12px;
                             font-weight: 700;
@@ -78,13 +79,13 @@
                         }
                         .wesprime-service-row td {
                             padding: 10px 8px;
-                            border: 1px solid #d9e2ec;
+                            border: 1px solid #D9E2E3;
                             vertical-align: top;
                         }
                         .wesprime-service-name {
                             font-size: 12px;
                             font-weight: 700;
-                            color: #38BDF8;
+                            color: #006D77;
                         }
                         .wesprime-service-desc {
                             margin-top: 3px;
@@ -93,56 +94,65 @@
                         }
                         .wesprime-note {
                             padding: 12px 14px;
-                            border: 1px solid #d9e2ec;
-                            border-left: 4px solid #38BDF8;
-                            background: #E0F2FE;
+                            border: 1px solid #D9E2E3;
+                            border-left: 4px solid #00A6B4;
+                            background: #EAF7F8;
                             color: #344050;
                         }
                         .wesprime-totals-label {
                             width: 58%;
                             padding: 7px 8px;
-                            border: 1px solid #d9e2ec;
-                            background: #E0F2FE;
+                            border: 1px solid #D9E2E3;
+                            background: #EAF7F8;
                             font-weight: 700;
                         }
                         .wesprime-totals-value {
                             padding: 7px 8px;
-                            border: 1px solid #d9e2ec;
+                            border: 1px solid #D9E2E3;
                             text-align: right;
                         }
                         .wesprime-sign-cell {
                             width: 25%;
                             padding: 10px;
-                            border: 1px solid #d9e2ec;
+                            border: 1px solid #D9E2E3;
+                            background: #ffffff;
                             vertical-align: top;
                         }
                         .wesprime-sign-head {
                             margin-bottom: 10px;
+                            border-bottom: 1px solid #D9E2E3;
+                            padding-bottom: 6px;
                             font-size: 12px;
                             font-weight: 700;
-                            color: #38BDF8;
+                            color: #006D77;
+                            text-align: center;
                             text-transform: uppercase;
+                        }
+                        .wesprime-signature-area {
+                            margin: 6px 0 8px;
+                            min-height: 62px;
+                            text-align: center;
                         }
                         .wesprime-sign-image {
                             width: auto;
                             max-width: 150px;
                             height: auto;
-                            max-height: 52px;
+                            max-height: 58px;
                             object-fit: contain;
                             display: block;
                             margin: 0 auto 10px auto;
                         }
                         .wesprime-sign-line {
                             margin-top: 22px;
-                            border-top: 1px solid #52606d;
+                            border-top: 1px solid #6B7785;
                             padding-top: 5px;
                             text-align: center;
                             font-size: 11px;
-                            color: #52606d;
+                            color: #5B6770;
                         }
                         .wesprime-footer {
                             margin-top: 14px;
-                            background: #38BDF8;
+                            background: #006D77;
                             color: #ffffff;
                         }
                         .wesprime-footer td {
@@ -163,7 +173,7 @@
                             color: #ffffff;
                         }
                         .wesprime-muted {
-                            color: #6b7785;
+                            color: #5B6770;
                         }
                         .wesprime-right {
                             text-align: right;
@@ -177,10 +187,10 @@
                         .wesprime-qr-box {
                             margin-top: 12px;
                             padding: 8px;
-                            border: 1px dashed #9fb3c8;
-                            background: #E0F2FE;
+                            border: 1px dashed #9CB9BC;
+                            background: #ffffff;
                         text-align: center;
-                        color: #6b7785;
+                        color: #5B6770;
                         font-size: 10px;
                     }
                 </style>
@@ -336,8 +346,8 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="wesprime-totals-label" style="background: #E0F2FE;">Grand Total</td>
-                                        <td class="wesprime-totals-value" style="background: #E0F2FE; font-weight: 700;">
+                                        <td class="wesprime-totals-label" style="background: #EAF7F8;">Grand Total</td>
+                                        <td class="wesprime-totals-value" style="background: #EAF7F8; font-weight: 700;">
                                             <span t-field="doc.amount_total" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
                                         </td>
                                     </tr>
@@ -381,17 +391,21 @@
                             </td>
                             <td class="wesprime-sign-cell">
                                 <div class="wesprime-sign-head">Prepared By</div>
-                                <img src="/wesprime_quote_report/static/src/img/signature_prepared.png" alt="Prepared Signature" class="wesprime-sign-image"/>
+                                <div class="wesprime-signature-area">
+                                    <img src="/wesprime_quote_report/static/src/img/signature_prepared.png" alt="Prepared by signature" class="wesprime-sign-image"/>
+                                </div>
                                 <div class="wesprime-center"><strong>Basil Jaison</strong></div>
                                 <div class="wesprime-center wesprime-small wesprime-muted">Prepared for commercial review</div>
                                 <div class="wesprime-sign-line">Authorized Preparer</div>
                             </td>
                             <td class="wesprime-sign-cell">
                                 <div class="wesprime-sign-head">Approved By</div>
-                                <img src="/wesprime_quote_report/static/src/img/signature_approved.png" alt="Approved Signature" class="wesprime-sign-image"/>
+                                <div class="wesprime-signature-area">
+                                    <img src="/wesprime_quote_report/static/src/img/signature_approved.png" alt="Approved by signature" class="wesprime-sign-image"/>
+                                </div>
                                 <div class="wesprime-center"><strong>Naveen Jose</strong></div>
                                 <div class="wesprime-center wesprime-small wesprime-muted">Authorized signatory</div>
-                                <div class="wesprime-sign-line">Approved Signature</div>
+                                <div class="wesprime-sign-line">Authorized Approval</div>
                             </td>
                             <td class="wesprime-sign-cell">
                                 <div class="wesprime-sign-head">Client Approval</div>
