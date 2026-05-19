@@ -99,7 +99,7 @@
                         border: 1px solid #D9E2E3;
                         box-sizing: border-box;
                         font-size: 10px;
-                        height: 145px;
+                        height: 135px;
                         padding: 8px;
                     }
                     .wesprime-bank-box {
@@ -117,11 +117,10 @@
                         text-transform: uppercase;
                     }
                     .wesprime-sign-image {
-                        height: auto;
-                        max-height: 45px;
-                        max-width: 120px;
+                        height: 35px;
+                        max-width: 110px;
                         display: block;
-                        margin: 6px auto;
+                        margin: 4px auto 6px auto;
                         width: auto;
                     }
                     .wesprime-sign-line {
@@ -160,7 +159,7 @@
                     }
                 </style>
 
-                <img src="/wesprime_invoice_report/static/src/img/quotation_header.png" alt="Invoice Header" style="width: 100%; max-height: 120px; object-fit: cover; display: block; margin: 0 0 16px 0;"/>
+                <img src="/wesprime_invoice_report/static/src/img/quotation_header.png" alt="Invoice Header" style="width: 100%; height: auto; max-height: 95px; display: block; margin: 0 0 8px 0;"/>
 
                 <div class="row g-3 align-items-start wesprime-compact-section">
                     <div class="col-7">
@@ -323,7 +322,7 @@
                                 <td class="wesprime-approval-cell">
                                     <div class="wesprime-approval-box">
                                         <div class="wesprime-sign-head">Prepared By</div>
-                                        <img src="/wesprime_invoice_report/static/src/img/signature_prepared.png" alt="Prepared by signature image" class="wesprime-sign-image" style="max-height: 45px; max-width: 120px; display: block; margin: 6px auto;"/>
+                                        <img src="/wesprime_invoice_report/static/src/img/signature_prepared.png" alt="Prepared by signature image" class="wesprime-sign-image" style="height: 35px; max-width: 110px; display: block; margin: 4px auto 6px auto;"/>
                                         <div class="wesprime-approval-name">Basil Jaison</div>
                                         <div class="wesprime-approval-note">Prepared for commercial review</div>
                                         <div class="wesprime-sign-line">Authorized Preparer</div>
@@ -332,7 +331,7 @@
                                 <td class="wesprime-approval-cell">
                                     <div class="wesprime-approval-box">
                                         <div class="wesprime-sign-head">Approved By</div>
-                                        <img src="/wesprime_invoice_report/static/src/img/signature_approved.png" alt="Approved by signature image" class="wesprime-sign-image" style="max-height: 45px; max-width: 120px; display: block; margin: 6px auto;"/>
+                                        <img src="/wesprime_invoice_report/static/src/img/signature_approved.png" alt="Approved by signature image" class="wesprime-sign-image" style="height: 35px; max-width: 110px; display: block; margin: 4px auto 6px auto;"/>
                                         <div class="wesprime-approval-name">Naveen Jose</div>
                                         <div class="wesprime-approval-note">Authorized signatory</div>
                                         <div class="wesprime-sign-line">Authorized Approval</div>

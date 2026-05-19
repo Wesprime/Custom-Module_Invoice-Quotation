@@ -18,27 +18,27 @@
 <div class="page wesprime-page" style="margin: 0; padding: 0; position: relative; font-family: 'DejaVu Sans', sans-serif; color: #1F2933;">
                     <style type="text/css">
                         .wesprime-page {
-                            font-size: 12px;
-                            line-height: 1.45;
+                            font-size: 11.5px;
+                            line-height: 1.32;
                         }
                         .wesprime-page table {
                             width: 100%;
                             border-collapse: collapse;
                         }
                         .wesprime-title {
-                            font-size: 28px;
+                            font-size: 24px;
                             font-weight: 700;
                             letter-spacing: 1px;
                             color: #006D77;
                             text-transform: uppercase;
                         }
                         .wesprime-subtitle {
-                            margin-top: 4px;
-                            font-size: 13px;
+                            margin-top: 2px;
+                            font-size: 11.5px;
                             color: #5B6770;
                         }
                         .wesprime-section {
-                            margin-top: 14px;
+                            margin-top: 8px;
                         }
                         .wesprime-box {
                             border: 1px solid #D9E2E3;
@@ -46,7 +46,7 @@
                         }
                         .wesprime-label {
                             width: 34%;
-                            padding: 6px 8px;
+                            padding: 4px 6px;
                             border: 1px solid #D9E2E3;
                             background: #EAF7F8;
                             color: #006D77;
@@ -54,31 +54,31 @@
                             vertical-align: top;
                         }
                         .wesprime-value {
-                            padding: 6px 8px;
+                            padding: 4px 6px;
                             border: 1px solid #D9E2E3;
                             background: #ffffff;
                             vertical-align: top;
                         }
                         .wesprime-section-title {
-                            padding: 8px 10px;
+                            padding: 6px 9px;
                             background: #006D77;
                             color: #ffffff;
-                            font-size: 13px;
+                            font-size: 11px;
                             font-weight: 700;
                             letter-spacing: 0.4px;
                             text-transform: uppercase;
                         }
                         .wesprime-service-head th {
-                            padding: 9px 8px;
+                            padding: 6px 7px;
                             border: 1px solid #D9E2E3;
                             background: #006D77;
                             color: #ffffff;
-                            font-size: 12px;
+                            font-size: 11px;
                             font-weight: 700;
                             text-align: left;
                         }
                         .wesprime-service-row td {
-                            padding: 10px 8px;
+                            padding: 6px 7px;
                             border: 1px solid #D9E2E3;
                             vertical-align: top;
                         }
@@ -93,7 +93,7 @@
                             color: #5b6770;
                         }
                         .wesprime-note {
-                            padding: 12px 14px;
+                            padding: 8px 10px;
                             border: 1px solid #D9E2E3;
                             border-left: 4px solid #00A6B4;
                             background: #EAF7F8;
@@ -101,19 +101,19 @@
                         }
                         .wesprime-totals-label {
                             width: 58%;
-                            padding: 7px 8px;
+                            padding: 4px 6px;
                             border: 1px solid #D9E2E3;
                             background: #EAF7F8;
                             font-weight: 700;
                         }
                         .wesprime-totals-value {
-                            padding: 7px 8px;
+                            padding: 4px 6px;
                             border: 1px solid #D9E2E3;
                             text-align: right;
                         }
                         .wesprime-approval-table {
                             border-collapse: separate;
-                            border-spacing: 10px 0;
+                            border-spacing: 6px 0;
                             table-layout: fixed;
                             width: 100%;
                         }
@@ -126,8 +126,9 @@
                             background: #ffffff;
                             border: 1px solid #D9E2E3;
                             box-sizing: border-box;
-                            height: 250px;
-                            padding: 14px;
+                            font-size: 10px;
+                            height: 135px;
+                            padding: 8px;
                         }
                         .wesprime-bank-box {
                             background: #EAF7F8;
@@ -135,35 +136,33 @@
                         .wesprime-client-approval-box {
                             background: #ffffff;
                             border: 1px solid #D9E2E3;
-                            margin-top: 10px;
-                            padding: 12px 14px;
+                            margin-top: 8px;
+                            padding: 8px 10px;
                             vertical-align: top;
                         }
                         .wesprime-sign-head {
-                            margin-bottom: 10px;
+                            margin-bottom: 4px;
                             border-bottom: 1px solid #D9E2E3;
-                            padding-bottom: 6px;
-                            font-size: 12px;
+                            padding-bottom: 4px;
+                            font-size: 10.5px;
                             font-weight: 700;
                             color: #006D77;
                             text-align: center;
                             text-transform: uppercase;
                         }
                         .wesprime-sign-image {
-                            height: auto;
-                            max-height: 55px;
-                            max-width: 130px;
-                            object-fit: contain;
+                            height: 35px;
+                            max-width: 110px;
                             display: block;
-                            margin: 8px auto 10px auto;
+                            margin: 4px auto 6px auto;
                             width: auto;
                         }
                         .wesprime-sign-line {
-                            margin-top: 22px;
+                            margin-top: 8px;
                             border-top: 1px solid #6B7785;
-                            padding-top: 5px;
+                            padding-top: 4px;
                             text-align: center;
-                            font-size: 11px;
+                            font-size: 9.5px;
                             color: #5B6770;
                         }
                         .wesprime-approval-name {
@@ -172,16 +171,16 @@
                         }
                         .wesprime-approval-note {
                             color: #5B6770;
-                            font-size: 10px;
+                            font-size: 9.5px;
                             text-align: center;
                         }
                         .wesprime-footer {
-                            margin-top: 14px;
+                            margin-top: 8px;
                             background: #006D77;
                             color: #ffffff;
                         }
                         .wesprime-footer td {
-                            padding: 12px 14px;
+                            padding: 8px 10px;
                         }
                         .wesprime-footer-name {
                             font-size: 15px;
@@ -210,13 +209,13 @@
                             font-size: 10px;
                         }
                         .wesprime-qr-box {
-                            margin-top: 12px;
-                            padding: 8px;
+                            margin-top: 6px;
+                            padding: 6px;
                             border: 1px dashed #9CB9BC;
                             background: #ffffff;
                             text-align: center;
                             color: #5B6770;
-                            font-size: 10px;
+                            font-size: 9px;
                         }
                 </style>
 
@@ -224,12 +223,10 @@
                 <!-- Add an absolute-positioned watermark block here when that feature is enabled -->
 
                 <!-- Top banner -->
-                <div>
-                    <img src="/wesprime_quote_report/static/src/img/quotation_header.png" alt="Quotation Header" style="width: 100%; height: auto; display: block;"/>
-                </div>
+                <img src="/wesprime_quote_report/static/src/img/quotation_header.png" alt="Quotation Header" style="width: 100%; height: auto; max-height: 95px; display: block; margin: 0 0 8px 0;"/>
 
                 <!-- Title block -->
-                <div class="wesprime-section" style="margin-top: 16px;">
+                <div class="wesprime-section" style="margin-top: 0;">
                     <table>
                         <tr>
                             <td style="width: 60%; vertical-align: top; padding-right: 14px;">
@@ -349,7 +346,7 @@
                                 <div class="wesprime-section-title">Amount in Words</div>
                                 <table class="wesprime-box">
                                     <tr>
-                                        <td class="wesprime-value" style="padding: 12px;">
+                                        <td class="wesprime-value" style="padding: 8px 10px;">
                                             <span t-esc="doc.currency_id.amount_to_text(doc.amount_total)"/>
                                         </td>
                                     </tr>
@@ -387,13 +384,13 @@
                     <div class="wesprime-section-title">Terms &amp; Conditions</div>
                     <table class="wesprime-box">
                         <tr>
-                            <td class="wesprime-value" style="padding: 10px 12px;">
+                            <td class="wesprime-value" style="padding: 8px 10px;">
                                 <div>1. This quotation is valid only for the period mentioned above unless extended in writing.</div>
-                                <div style="margin-top: 6px;">2. Project scope, delivery timelines, and commercial assumptions are based on the current understanding of requirements.</div>
-                                <div style="margin-top: 6px;">3. Any change requests, additional modules, third-party licenses, integrations, or custom development beyond scope may be quoted separately.</div>
-                                <div style="margin-top: 6px;">4. Taxes, if applicable, are charged as per prevailing regulations unless explicitly stated otherwise.</div>
-                                <div style="margin-top: 6px;">5. Work execution, milestone planning, and user acceptance will be aligned with the final agreed implementation plan.</div>
-                                <div style="margin-top: 6px;">6. Payment reference should mention the quotation number for traceability.</div>
+                                <div style="margin-top: 4px;">2. Project scope, delivery timelines, and commercial assumptions are based on the current understanding of requirements.</div>
+                                <div style="margin-top: 4px;">3. Any change requests, additional modules, third-party licenses, integrations, or custom development beyond scope may be quoted separately.</div>
+                                <div style="margin-top: 4px;">4. Taxes, if applicable, are charged as per prevailing regulations unless explicitly stated otherwise.</div>
+                                <div style="margin-top: 4px;">5. Work execution, milestone planning, and user acceptance will be aligned with the final agreed implementation plan.</div>
+                                <div style="margin-top: 4px;">6. Payment reference should mention the quotation number for traceability.</div>
                             </td>
                         </tr>
                     </table>
@@ -419,7 +416,7 @@
                             <td class="wesprime-approval-cell">
                                 <div class="wesprime-approval-box">
                                     <div class="wesprime-sign-head">Prepared By</div>
-                                    <img src="/wesprime_quote_report/static/src/img/signature_prepared.png" alt="Prepared by signature image" class="wesprime-sign-image"/>
+                                    <img src="/wesprime_quote_report/static/src/img/signature_prepared.png" alt="Prepared by signature image" class="wesprime-sign-image" style="height: 35px; max-width: 110px; display: block; margin: 4px auto 6px auto;"/>
                                     <div class="wesprime-approval-name">Basil Jaison</div>
                                     <div class="wesprime-approval-note">Prepared for commercial review</div>
                                     <div class="wesprime-sign-line">Authorized Preparer</div>
@@ -428,7 +425,7 @@
                             <td class="wesprime-approval-cell">
                                 <div class="wesprime-approval-box">
                                     <div class="wesprime-sign-head">Approved By</div>
-                                    <img src="/wesprime_quote_report/static/src/img/signature_approved.png" alt="Approved by signature image" class="wesprime-sign-image"/>
+                                    <img src="/wesprime_quote_report/static/src/img/signature_approved.png" alt="Approved by signature image" class="wesprime-sign-image" style="height: 35px; max-width: 110px; display: block; margin: 4px auto 6px auto;"/>
                                     <div class="wesprime-approval-name">Naveen Jose</div>
                                     <div class="wesprime-approval-note">Authorized signatory</div>
                                     <div class="wesprime-sign-line">Authorized Approval</div>
