@@ -18,26 +18,40 @@
                     .wesprime-invoice-page {
                         color: #1F2933;
                         font-family: 'DejaVu Sans', sans-serif;
-                        font-size: 12px;
-                        line-height: 1.45;
+                        font-size: 11.5px;
+                        line-height: 1.32;
+                    }
+                    .wesprime-compact-section {
+                        margin-bottom: 8px;
+                    }
+                    .wesprime-invoice-page .table {
+                        margin-bottom: 0;
+                    }
+                    .wesprime-invoice-page .table-sm td,
+                    .wesprime-invoice-page .table-sm th {
+                        padding: 4px 6px;
+                    }
+                    .wesprime-invoice-page .mt-1 {
+                        margin-top: 2px !important;
                     }
                     .wesprime-title {
                         color: #006D77;
-                        font-size: 28px;
+                        font-size: 24px;
                         font-weight: 700;
                         letter-spacing: 1px;
                         text-transform: uppercase;
                     }
                     .wesprime-subtitle {
                         color: #5B6770;
-                        font-size: 13px;
+                        font-size: 11.5px;
                     }
                     .wesprime-section-title {
                         background: #006D77;
                         color: #ffffff;
-                        font-size: 12px;
+                        font-size: 11px;
                         font-weight: 700;
                         letter-spacing: 0.4px;
+                        padding: 6px 9px;
                         text-transform: uppercase;
                     }
                     .wesprime-soft-bg {
@@ -55,23 +69,23 @@
                     .wesprime-table thead th {
                         background: #006D77;
                         color: #ffffff;
-                        font-size: 12px;
+                        font-size: 11px;
                         font-weight: 700;
-                        padding: 10px 8px;
+                        padding: 6px 7px;
                         border-color: #D9E2E3;
                     }
                     .wesprime-table td {
                         border-color: #D9E2E3;
-                        padding: 10px 8px;
+                        padding: 6px 7px;
                         vertical-align: top;
                     }
                     .wesprime-approval-wrap {
                         border: 1px solid #D9E2E3;
-                        padding: 12px;
+                        padding: 6px;
                     }
                     .wesprime-approval-table {
                         border-collapse: separate;
-                        border-spacing: 10px 0;
+                        border-spacing: 6px 0;
                         table-layout: fixed;
                         width: 100%;
                     }
@@ -84,8 +98,9 @@
                         background: #ffffff;
                         border: 1px solid #D9E2E3;
                         box-sizing: border-box;
-                        height: 250px;
-                        padding: 14px;
+                        font-size: 10px;
+                        height: 145px;
+                        padding: 8px;
                     }
                     .wesprime-bank-box {
                         background: #EAF7F8;
@@ -93,29 +108,28 @@
                     .wesprime-sign-head {
                         border-bottom: 1px solid #D9E2E3;
                         color: #006D77;
-                        font-size: 12px;
+                        font-size: 10.5px;
                         font-weight: 700;
                         letter-spacing: 0.3px;
-                        margin-bottom: 10px;
-                        padding-bottom: 6px;
+                        margin-bottom: 4px;
+                        padding-bottom: 4px;
                         text-align: center;
                         text-transform: uppercase;
                     }
                     .wesprime-sign-image {
                         height: auto;
-                        max-height: 55px;
-                        max-width: 130px;
-                        object-fit: contain;
+                        max-height: 45px;
+                        max-width: 120px;
                         display: block;
-                        margin: 8px auto 10px auto;
+                        margin: 6px auto;
                         width: auto;
                     }
                     .wesprime-sign-line {
                         border-top: 1px solid #6B7785;
                         color: #5B6770;
-                        font-size: 11px;
-                        margin-top: 24px;
-                        padding-top: 6px;
+                        font-size: 9.5px;
+                        margin-top: 8px;
+                        padding-top: 4px;
                         text-align: center;
                     }
                     .wesprime-approval-name {
@@ -124,12 +138,13 @@
                     }
                     .wesprime-approval-note {
                         color: #5B6770;
-                        font-size: 11px;
+                        font-size: 9.5px;
                         text-align: center;
                     }
                     .wesprime-footer {
                         background: #006D77;
                         color: #ffffff;
+                        padding: 8px 10px !important;
                     }
                     .wesprime-footer .wesprime-muted-light {
                         color: #ffffff;
@@ -138,18 +153,16 @@
                         border: 1px dashed #9CB9BC;
                         background: #ffffff;
                         color: #5B6770;
-                        font-size: 10px;
-                        margin-top: 12px;
-                        padding: 10px;
+                        font-size: 9px;
+                        margin-top: 6px;
+                        padding: 6px;
                         text-align: center;
                     }
                 </style>
 
-                <div class="mb-3">
-                    <img src="/wesprime_invoice_report/static/src/img/quotation_header.png" alt="Invoice Header" style="width: 100%; height: auto; display: block;"/>
-                </div>
+                <img src="/wesprime_invoice_report/static/src/img/quotation_header.png" alt="Invoice Header" style="width: 100%; max-height: 120px; object-fit: cover; display: block; margin: 0 0 16px 0;"/>
 
-                <div class="row g-3 align-items-start mb-3">
+                <div class="row g-3 align-items-start wesprime-compact-section">
                     <div class="col-7">
                         <div class="wesprime-title">Tax Invoice</div>
                         <div class="wesprime-subtitle mt-1">Premium ERP Implementation &amp; Software Development Billing Statement</div>
@@ -178,8 +191,8 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <div class="wesprime-section-title px-3 py-2">Bill To</div>
+                <div class="wesprime-compact-section">
+                    <div class="wesprime-section-title">Bill To</div>
                     <div class="wesprime-soft-border wesprime-soft-bg p-0">
                         <table class="table table-sm mb-0">
                             <tbody>
@@ -212,14 +225,14 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <div class="wesprime-soft-border wesprime-soft-bg wesprime-note p-3">
+                <div class="wesprime-compact-section">
+                    <div class="wesprime-soft-border wesprime-soft-bg wesprime-note" style="padding: 8px 10px;">
                         Thank you for your business. This tax invoice summarizes the billed services, applicable pricing, and payment details for the delivered scope.
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <div class="wesprime-section-title px-3 py-2">Invoice Items</div>
+                <div class="wesprime-compact-section">
+                    <div class="wesprime-section-title">Invoice Items</div>
                     <table class="table table-sm mb-0 wesprime-table">
                         <thead>
                             <tr>
@@ -256,15 +269,15 @@
                     </table>
                 </div>
 
-                <div class="row g-3 mb-3" style="page-break-inside: avoid;">
+                <div class="row g-3 wesprime-compact-section" style="page-break-inside: avoid;">
                     <div class="col-7">
-                        <div class="wesprime-section-title px-3 py-2">Amount In Words</div>
-                        <div class="wesprime-soft-border wesprime-soft-bg p-3">
+                        <div class="wesprime-section-title">Amount In Words</div>
+                        <div class="wesprime-soft-border wesprime-soft-bg" style="padding: 8px 10px;">
                             <span t-esc="doc.currency_id.amount_to_text(doc.amount_total)"/>
                         </div>
                     </div>
                     <div class="col-5">
-                        <div class="wesprime-section-title px-3 py-2">Totals</div>
+                        <div class="wesprime-section-title">Totals</div>
                         <table class="table table-sm mb-0 wesprime-soft-border">
                             <tbody>
                                 <tr>
@@ -290,8 +303,8 @@
                     </div>
                 </div>
 
-                <div class="mb-3" style="page-break-inside: avoid;">
-                    <div class="wesprime-section-title px-3 py-2">Banking Details &amp; Signatures</div>
+                <div class="wesprime-compact-section" style="page-break-inside: avoid;">
+                    <div class="wesprime-section-title">Banking Details &amp; Signatures</div>
                     <div class="wesprime-approval-wrap">
                         <table class="wesprime-approval-table">
                             <tr>
@@ -310,7 +323,7 @@
                                 <td class="wesprime-approval-cell">
                                     <div class="wesprime-approval-box">
                                         <div class="wesprime-sign-head">Prepared By</div>
-                                        <img src="/wesprime_invoice_report/static/src/img/signature_prepared.png" alt="Prepared by signature image" class="wesprime-sign-image"/>
+                                        <img src="/wesprime_invoice_report/static/src/img/signature_prepared.png" alt="Prepared by signature image" class="wesprime-sign-image" style="max-height: 45px; max-width: 120px; display: block; margin: 6px auto;"/>
                                         <div class="wesprime-approval-name">Basil Jaison</div>
                                         <div class="wesprime-approval-note">Prepared for commercial review</div>
                                         <div class="wesprime-sign-line">Authorized Preparer</div>
@@ -319,7 +332,7 @@
                                 <td class="wesprime-approval-cell">
                                     <div class="wesprime-approval-box">
                                         <div class="wesprime-sign-head">Approved By</div>
-                                        <img src="/wesprime_invoice_report/static/src/img/signature_approved.png" alt="Approved by signature image" class="wesprime-sign-image"/>
+                                        <img src="/wesprime_invoice_report/static/src/img/signature_approved.png" alt="Approved by signature image" class="wesprime-sign-image" style="max-height: 45px; max-width: 120px; display: block; margin: 6px auto;"/>
                                         <div class="wesprime-approval-name">Naveen Jose</div>
                                         <div class="wesprime-approval-note">Authorized signatory</div>
                                         <div class="wesprime-sign-line">Authorized Approval</div>
