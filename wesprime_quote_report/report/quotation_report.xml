@@ -111,11 +111,32 @@
                             border: 1px solid #D9E2E3;
                             text-align: right;
                         }
-                        .wesprime-sign-cell {
-                            width: 25%;
-                            padding: 10px;
-                            border: 1px solid #D9E2E3;
+                        .wesprime-approval-table {
+                            border-collapse: separate;
+                            border-spacing: 10px 0;
+                            table-layout: fixed;
+                            width: 100%;
+                        }
+                        .wesprime-approval-cell {
+                            padding: 0;
+                            vertical-align: top;
+                            width: 33.333%;
+                        }
+                        .wesprime-approval-box {
                             background: #ffffff;
+                            border: 1px solid #D9E2E3;
+                            box-sizing: border-box;
+                            height: 250px;
+                            padding: 14px;
+                        }
+                        .wesprime-bank-box {
+                            background: #EAF7F8;
+                        }
+                        .wesprime-client-approval-box {
+                            background: #ffffff;
+                            border: 1px solid #D9E2E3;
+                            margin-top: 10px;
+                            padding: 12px 14px;
                             vertical-align: top;
                         }
                         .wesprime-sign-head {
@@ -128,19 +149,14 @@
                             text-align: center;
                             text-transform: uppercase;
                         }
-                        .wesprime-signature-area {
-                            margin: 6px 0 8px;
-                            min-height: 62px;
-                            text-align: center;
-                        }
                         .wesprime-sign-image {
-                            width: auto;
-                            max-width: 150px;
                             height: auto;
-                            max-height: 58px;
+                            max-height: 55px;
+                            max-width: 130px;
                             object-fit: contain;
                             display: block;
-                            margin: 0 auto 10px auto;
+                            margin: 8px auto 10px auto;
+                            width: auto;
                         }
                         .wesprime-sign-line {
                             margin-top: 22px;
@@ -149,6 +165,15 @@
                             text-align: center;
                             font-size: 11px;
                             color: #5B6770;
+                        }
+                        .wesprime-approval-name {
+                            font-weight: 700;
+                            text-align: center;
+                        }
+                        .wesprime-approval-note {
+                            color: #5B6770;
+                            font-size: 10px;
+                            text-align: center;
                         }
                         .wesprime-footer {
                             margin-top: 14px;
@@ -189,10 +214,10 @@
                             padding: 8px;
                             border: 1px dashed #9CB9BC;
                             background: #ffffff;
-                        text-align: center;
-                        color: #5B6770;
-                        font-size: 10px;
-                    }
+                            text-align: center;
+                            color: #5B6770;
+                            font-size: 10px;
+                        }
                 </style>
 
                 <!-- V2 foundation: keep the page container relative for future watermark support -->
@@ -377,49 +402,51 @@
                 <!-- Final approval and banking section -->
                 <div class="wesprime-section" style="page-break-inside: avoid;">
                     <div class="wesprime-section-title">Commercial Acceptance</div>
-                    <table class="wesprime-box">
+                    <table class="wesprime-approval-table">
                         <tr>
-                            <td class="wesprime-sign-cell">
-                                <div class="wesprime-sign-head">Bank Details</div>
-                                <div><strong>Bank:</strong> South Indian Bank</div>
-                                <div style="margin-top: 4px;"><strong>Account Name:</strong> <span t-esc="company.name or '-'"/></div>
-                                <div style="margin-top: 4px;"><strong>Account Number:</strong> 0530053000013863</div>
-                                <div style="margin-top: 4px;"><strong>Reference:</strong> <span t-esc="doc.name or '-'"/></div>
-                                <div class="wesprime-qr-box">
-                                    QR / Digital Approval Placeholder
+                            <td class="wesprime-approval-cell">
+                                <div class="wesprime-approval-box wesprime-bank-box">
+                                    <div class="wesprime-sign-head">Bank Details</div>
+                                    <div><strong>Bank:</strong> South Indian Bank</div>
+                                    <div style="margin-top: 6px;"><strong>Account Name:</strong> <span t-esc="company.name or '-'"/></div>
+                                    <div style="margin-top: 6px;"><strong>Account Number:</strong> 0530053000013863</div>
+                                    <div style="margin-top: 6px;"><strong>Reference:</strong> <span t-esc="doc.name or '-'"/></div>
+                                    <div class="wesprime-qr-box">
+                                        QR / Digital Approval Placeholder
+                                    </div>
                                 </div>
                             </td>
-                            <td class="wesprime-sign-cell">
-                                <div class="wesprime-sign-head">Prepared By</div>
-                                <div class="wesprime-signature-area">
-                                    <img src="/wesprime_quote_report/static/src/img/signature_prepared.png" alt="Prepared by signature" class="wesprime-sign-image"/>
+                            <td class="wesprime-approval-cell">
+                                <div class="wesprime-approval-box">
+                                    <div class="wesprime-sign-head">Prepared By</div>
+                                    <img src="/wesprime_quote_report/static/src/img/signature_prepared.png" alt="Prepared by signature image" class="wesprime-sign-image"/>
+                                    <div class="wesprime-approval-name">Basil Jaison</div>
+                                    <div class="wesprime-approval-note">Prepared for commercial review</div>
+                                    <div class="wesprime-sign-line">Authorized Preparer</div>
                                 </div>
-                                <div class="wesprime-center"><strong>Basil Jaison</strong></div>
-                                <div class="wesprime-center wesprime-small wesprime-muted">Prepared for commercial review</div>
-                                <div class="wesprime-sign-line">Authorized Preparer</div>
                             </td>
-                            <td class="wesprime-sign-cell">
-                                <div class="wesprime-sign-head">Approved By</div>
-                                <div class="wesprime-signature-area">
-                                    <img src="/wesprime_quote_report/static/src/img/signature_approved.png" alt="Approved by signature" class="wesprime-sign-image"/>
+                            <td class="wesprime-approval-cell">
+                                <div class="wesprime-approval-box">
+                                    <div class="wesprime-sign-head">Approved By</div>
+                                    <img src="/wesprime_quote_report/static/src/img/signature_approved.png" alt="Approved by signature image" class="wesprime-sign-image"/>
+                                    <div class="wesprime-approval-name">Naveen Jose</div>
+                                    <div class="wesprime-approval-note">Authorized signatory</div>
+                                    <div class="wesprime-sign-line">Authorized Approval</div>
                                 </div>
-                                <div class="wesprime-center"><strong>Naveen Jose</strong></div>
-                                <div class="wesprime-center wesprime-small wesprime-muted">Authorized signatory</div>
-                                <div class="wesprime-sign-line">Authorized Approval</div>
-                            </td>
-                            <td class="wesprime-sign-cell">
-                                <div class="wesprime-sign-head">Client Approval</div>
-                                <div class="wesprime-center wesprime-small wesprime-muted" style="margin-top: 34px;">
-                                    Sign and stamp to confirm acceptance
-                                </div>
-                                <div class="wesprime-sign-line">Client Signature &amp; Stamp</div>
-                                <div class="wesprime-center wesprime-small wesprime-muted" style="margin-top: 8px;">
-                                    Date: ____________________
-                                </div>
-                                <!-- V2 foundation: future digital approval metadata can be injected in this cell -->
                             </td>
                         </tr>
                     </table>
+                    <div class="wesprime-client-approval-box">
+                        <div class="wesprime-sign-head">Client Approval</div>
+                        <div class="wesprime-center wesprime-small wesprime-muted">
+                            Sign and stamp to confirm acceptance
+                        </div>
+                        <div class="wesprime-sign-line">Client Signature &amp; Stamp</div>
+                        <div class="wesprime-center wesprime-small wesprime-muted" style="margin-top: 8px;">
+                            Date: ____________________
+                        </div>
+                        <!-- V2 foundation: future digital approval metadata can be injected in this cell -->
+                    </div>
                 </div>
 
                 <!-- Premium footer -->

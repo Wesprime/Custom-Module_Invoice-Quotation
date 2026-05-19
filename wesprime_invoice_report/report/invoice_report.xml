@@ -65,9 +65,30 @@
                         padding: 10px 8px;
                         vertical-align: top;
                     }
-                    .wesprime-sign-card {
+                    .wesprime-approval-wrap {
+                        border: 1px solid #D9E2E3;
+                        padding: 12px;
+                    }
+                    .wesprime-approval-table {
+                        border-collapse: separate;
+                        border-spacing: 10px 0;
+                        table-layout: fixed;
+                        width: 100%;
+                    }
+                    .wesprime-approval-cell {
+                        padding: 0;
+                        vertical-align: top;
+                        width: 33.333%;
+                    }
+                    .wesprime-approval-box {
                         background: #ffffff;
                         border: 1px solid #D9E2E3;
+                        box-sizing: border-box;
+                        height: 250px;
+                        padding: 14px;
+                    }
+                    .wesprime-bank-box {
+                        background: #EAF7F8;
                     }
                     .wesprime-sign-head {
                         border-bottom: 1px solid #D9E2E3;
@@ -80,19 +101,14 @@
                         text-align: center;
                         text-transform: uppercase;
                     }
-                    .wesprime-signature-area {
-                        margin: 6px 0 8px;
-                        min-height: 62px;
-                        text-align: center;
-                    }
                     .wesprime-sign-image {
-                        width: auto;
-                        max-width: 150px;
                         height: auto;
-                        max-height: 58px;
+                        max-height: 55px;
+                        max-width: 130px;
                         object-fit: contain;
                         display: block;
-                        margin: 0 auto 10px;
+                        margin: 8px auto 10px auto;
+                        width: auto;
                     }
                     .wesprime-sign-line {
                         border-top: 1px solid #6B7785;
@@ -100,6 +116,15 @@
                         font-size: 11px;
                         margin-top: 24px;
                         padding-top: 6px;
+                        text-align: center;
+                    }
+                    .wesprime-approval-name {
+                        font-weight: 700;
+                        text-align: center;
+                    }
+                    .wesprime-approval-note {
+                        color: #5B6770;
+                        font-size: 11px;
                         text-align: center;
                     }
                     .wesprime-footer {
@@ -111,8 +136,12 @@
                     }
                     .wesprime-qr-box {
                         border: 1px dashed #9CB9BC;
+                        background: #ffffff;
                         color: #5B6770;
                         font-size: 10px;
+                        margin-top: 12px;
+                        padding: 10px;
+                        text-align: center;
                     }
                 </style>
 
@@ -263,43 +292,41 @@
 
                 <div class="mb-3" style="page-break-inside: avoid;">
                     <div class="wesprime-section-title px-3 py-2">Banking Details &amp; Signatures</div>
-                    <div class="wesprime-soft-border p-3">
-                        <div class="row g-3">
-                            <div class="col-4">
-                                <div class="wesprime-soft-bg wesprime-soft-border h-100 p-3">
-                                    <div class="fw-bold text-uppercase mb-2">Banking Details</div>
-                                    <div><strong>Bank:</strong> South Indian Bank</div>
-                                    <div class="mt-1"><strong>Account Name:</strong> <span t-esc="company.name or '-'"/></div>
-                                    <div class="mt-1"><strong>Account Number:</strong> 0530053000013863</div>
-                                    <div class="mt-1"><strong>Reference:</strong> <span t-esc="doc.name or '-'"/></div>
-                                    <div class="wesprime-qr-box text-center mt-3 p-3">
-                                        QR / Digital Approval Placeholder
+                    <div class="wesprime-approval-wrap">
+                        <table class="wesprime-approval-table">
+                            <tr>
+                                <td class="wesprime-approval-cell">
+                                    <div class="wesprime-approval-box wesprime-bank-box">
+                                        <div class="wesprime-sign-head">Banking Details</div>
+                                        <div><strong>Bank:</strong> South Indian Bank</div>
+                                        <div style="margin-top: 6px;"><strong>Account Name:</strong> <span t-esc="company.name or '-'"/></div>
+                                        <div style="margin-top: 6px;"><strong>Account Number:</strong> 0530053000013863</div>
+                                        <div style="margin-top: 6px;"><strong>Reference:</strong> <span t-esc="doc.name or '-'"/></div>
+                                        <div class="wesprime-qr-box">
+                                            QR / Digital Approval Placeholder
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="wesprime-sign-card h-100 p-3">
-                                    <div class="wesprime-sign-head">Prepared By</div>
-                                    <div class="wesprime-signature-area">
-                                        <img src="/wesprime_invoice_report/static/src/img/signature_prepared.png" alt="Prepared by signature" class="wesprime-sign-image"/>
+                                </td>
+                                <td class="wesprime-approval-cell">
+                                    <div class="wesprime-approval-box">
+                                        <div class="wesprime-sign-head">Prepared By</div>
+                                        <img src="/wesprime_invoice_report/static/src/img/signature_prepared.png" alt="Prepared by signature image" class="wesprime-sign-image"/>
+                                        <div class="wesprime-approval-name">Basil Jaison</div>
+                                        <div class="wesprime-approval-note">Prepared for commercial review</div>
+                                        <div class="wesprime-sign-line">Authorized Preparer</div>
                                     </div>
-                                    <div class="text-center fw-semibold">Basil Jaison</div>
-                                    <div class="text-center small wesprime-muted">Prepared for commercial review</div>
-                                    <div class="wesprime-sign-line">Authorized Preparer</div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="wesprime-sign-card h-100 p-3">
-                                    <div class="wesprime-sign-head">Approved By</div>
-                                    <div class="wesprime-signature-area">
-                                        <img src="/wesprime_invoice_report/static/src/img/signature_approved.png" alt="Approved by signature" class="wesprime-sign-image"/>
+                                </td>
+                                <td class="wesprime-approval-cell">
+                                    <div class="wesprime-approval-box">
+                                        <div class="wesprime-sign-head">Approved By</div>
+                                        <img src="/wesprime_invoice_report/static/src/img/signature_approved.png" alt="Approved by signature image" class="wesprime-sign-image"/>
+                                        <div class="wesprime-approval-name">Naveen Jose</div>
+                                        <div class="wesprime-approval-note">Authorized signatory</div>
+                                        <div class="wesprime-sign-line">Authorized Approval</div>
                                     </div>
-                                    <div class="text-center fw-semibold">Naveen Jose</div>
-                                    <div class="text-center small wesprime-muted">Authorized signatory</div>
-                                    <div class="wesprime-sign-line">Authorized Approval</div>
-                                </div>
-                            </div>
-                        </div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
