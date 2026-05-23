@@ -8,6 +8,9 @@
     "website": "https://www.wesprime.com",
     "license": "LGPL-3",
     "depends": ["account"],
+    "external_dependencies": {
+        "python": ["qrcode"],
+    },
     "data": [
         "data/paperformat.xml",
         "report/invoice_report.xml",
