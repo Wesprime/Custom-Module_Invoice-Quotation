@@ -13,6 +13,9 @@
             <t t-set="company" t-value="doc.company_id or res_company"/>
             <t t-set="invoice_lines" t-value="doc.invoice_line_ids.filtered(lambda line: line.display_type not in ('line_section', 'line_note'))"/>
             <t t-set="tax_totals" t-value="doc.tax_totals or {}"/>
+            <t t-set="object" t-value="doc"/>
+            <t t-set="invoice_url" t-value="object.get_base_url() + '/web#id=%s&amp;model=account.move&amp;view_type=form' % object.id"/>
+            <t t-set="invoice_qr_url" t-value="invoice_url.replace('%', '%25').replace('#', '%23').replace('&amp;', '%26').replace(' ', '%20')"/>
             <t t-set="cgst_amount" t-value="0.0"/>
             <t t-set="sgst_amount" t-value="0.0"/>
             <t t-set="igst_amount" t-value="0.0"/>
@@ -46,7 +49,7 @@
                         page-break-inside: avoid;
                     }
                     .wesprime-header {
-                        padding: 8px 0 12px 0;
+                        padding: 8px 0 0 0;
                     }
                     .wesprime-header img {
                         display: block;
@@ -296,8 +299,14 @@
                         color: #52606D;
                         font-size: 9px;
                         margin-top: 10px;
-                        padding: 8px;
+                        padding: 7px;
                         text-align: center;
+                    }
+                    .wesprime-qr-box img {
+                        display: block;
+                        height: 62px;
+                        margin: 0 auto;
+                        width: 62px;
                     }
                     .wesprime-footer {
                         background: #07152D;
@@ -325,16 +334,23 @@
                         border: 1px solid #00A6B4;
                         color: #ffffff;
                         font-size: 9px;
-                        height: 52px;
-                        line-height: 52px;
+                        height: 58px;
+                        margin-left: auto;
+                        padding: 3px;
                         text-align: center;
-                        width: 82px;
+                        width: 58px;
+                    }
+                    .wesprime-footer-qr img {
+                        display: block;
+                        height: 52px;
+                        width: 52px;
                     }
                 </style>
 
                 <div class="wesprime-header">
                     <img src="/wesprime_invoice_report/static/src/img/quotation_header.png" alt="Wesprime invoice header"/>
                 </div>
+                <div style="height: 14px; line-height: 14px;"></div>
 
                 <div class="wesprime-section-accent">
                     <table class="wesprime-title-table">
@@ -555,33 +571,39 @@
                                 <table class="wesprime-detail-table">
                                     <tr>
                                         <td class="wesprime-detail-row-label">Bank</td>
-                                        <td class="wesprime-detail-row-value">South Indian Bank</td>
+                                        <td class="wesprime-detail-row-value">Federal Bank</td>
                                     </tr>
                                     <tr>
                                         <td class="wesprime-detail-row-label">Account</td>
-                                        <td class="wesprime-detail-row-value"><span t-esc="company.name or '-'"/></td>
+                                        <td class="wesprime-detail-row-value">WESPRIME BUSINESS SOLUTIONS PRIVATE LIMITED</td>
                                     </tr>
                                     <tr>
                                         <td class="wesprime-detail-row-label">A/C No</td>
-                                        <td class="wesprime-detail-row-value">0530053000013863</td>
+                                        <td class="wesprime-detail-row-value">14140200012514</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wesprime-detail-row-label">IFSC Code</td>
+                                        <td class="wesprime-detail-row-value">FDRL0001414</td>
                                     </tr>
                                     <tr>
                                         <td class="wesprime-detail-row-label">Reference</td>
                                         <td class="wesprime-detail-row-value"><span t-esc="doc.name or '-'"/></td>
                                     </tr>
                                 </table>
-                                <div class="wesprime-qr-box">Payment QR / Digital Approval Placeholder</div>
+                                <div class="wesprime-qr-box">
+                                    <img t-att-src="'/report/barcode/QR/%s?width=90&amp;height=90' % invoice_qr_url" alt=""/>
+                                </div>
                             </td>
                             <td>
                                 <div class="wesprime-sign-title wesprime-center">Prepared By</div>
-                                <img src="/wesprime_invoice_report/static/src/img/signature_prepared.png" alt="Prepared by signature image" class="wesprime-sign-image"/>
+                                <img src="/wesprime_invoice_report/static/src/img/signature_prepared.png" alt="" style="height: 38px; max-width: 120px; display: block; margin: 4px auto 8px auto;"/>
                                 <div class="wesprime-sign-name">Basil Jaison</div>
                                 <div class="wesprime-sign-note">Prepared for commercial review</div>
                                 <div class="wesprime-sign-line">Authorized Preparer</div>
                             </td>
                             <td>
                                 <div class="wesprime-sign-title wesprime-center">Approved By</div>
-                                <img src="/wesprime_invoice_report/static/src/img/signature_approved.png" alt="Approved by signature image" class="wesprime-sign-image"/>
+                                <img src="/wesprime_invoice_report/static/src/img/signature_approved.png" alt="" style="height: 38px; max-width: 120px; display: block; margin: 4px auto 8px auto;"/>
                                 <div class="wesprime-sign-name">Naveen Jose</div>
                                 <div class="wesprime-sign-note">Authorized signatory</div>
                                 <div class="wesprime-sign-line">Authorized Approval</div>
@@ -611,11 +633,13 @@
                                 <div class="wesprime-footer-line">
                                     Website: <span t-esc="company.website or '-'"/> |
                                     Email: <span t-esc="company.email or '-'"/> |
-                                    Phone: <span t-esc="company.phone or '-'"/>
+                                    Phone: +91 94002 40322
                                 </div>
                             </td>
                             <td style="width: 16%; text-align: right;">
-                                <div class="wesprime-footer-qr">QR</div>
+                                <div class="wesprime-footer-qr">
+                                    <img t-att-src="'/report/barcode/QR/%s?width=90&amp;height=90' % invoice_qr_url" alt=""/>
+                                </div>
                             </td>
                         </tr>
                     </table>
