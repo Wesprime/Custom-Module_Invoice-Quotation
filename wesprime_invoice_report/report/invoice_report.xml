@@ -15,7 +15,8 @@
             <t t-set="tax_totals" t-value="doc.tax_totals or {}"/>
             <t t-set="object" t-value="doc"/>
             <t t-set="invoice_url" t-value="object.get_base_url() + '/web#id=%s&amp;model=account.move&amp;view_type=form' % object.id"/>
-            <t t-set="invoice_qr_url" t-value="invoice_url.replace('%', '%25').replace('#', '%23').replace('&amp;', '%26').replace(' ', '%20')"/>
+            <t t-set="qr_value" t-value="invoice_url.replace('%', '%25').replace(':', '%3A').replace('/', '%2F').replace('#', '%23').replace('?', '%3F').replace('&amp;', '%26').replace('=', '%3D').replace(' ', '%20')"/>
+            <t t-set="qr_src" t-value="'/report/barcode/?barcode_type=QR&amp;value=%s&amp;width=100&amp;height=100' % qr_value"/>
             <t t-set="cgst_amount" t-value="0.0"/>
             <t t-set="sgst_amount" t-value="0.0"/>
             <t t-set="igst_amount" t-value="0.0"/>
@@ -591,7 +592,7 @@
                                     </tr>
                                 </table>
                                 <div class="wesprime-qr-box">
-                                    <img t-att-src="'/report/barcode/QR/%s?width=90&amp;height=90' % invoice_qr_url" alt=""/>
+                                    <img t-att-src="qr_src" alt="" style="width:65px; height:65px; display:block; margin:auto;"/>
                                 </div>
                             </td>
                             <td>
@@ -638,7 +639,7 @@
                             </td>
                             <td style="width: 16%; text-align: right;">
                                 <div class="wesprime-footer-qr">
-                                    <img t-att-src="'/report/barcode/QR/%s?width=90&amp;height=90' % invoice_qr_url" alt=""/>
+                                    <img t-att-src="qr_src" alt="" style="width:65px; height:65px; display:block; margin:auto;"/>
                                 </div>
                             </td>
                         </tr>
